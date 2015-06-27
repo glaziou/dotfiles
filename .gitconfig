@@ -1,0 +1,10 @@
+[user]
+	email = glaziou@gmail.com
+	name = glaziou
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+[core]
+    editor = vim
+

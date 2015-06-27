@@ -1,0 +1,19 @@
+#!/bin/sh
+# vimr environment
+# GTB 2014
+
+tmux has-session -t rtb
+if [ $? != 0 ]
+then
+    tmux new-session -s rtb -n rvim -d
+    tmux send-keys -t rtb 'cd ~/Dropbox/gtb2014' C-m
+    tmux send-keys -t rtb 'vim misc.R' C-m
+    tmux send-keys -t rtb 'F2' C-m
+    tmux new-window -n console -t rtb
+    tmux send-keys -t rtb:2 'cd ~/Dropbox/gtb2014' C-m
+    tmux select-window -t rtb:1
+    tmux send-keys -t rtb 'G' C-m
+fi
+tmux attach -t rtb
+
+    

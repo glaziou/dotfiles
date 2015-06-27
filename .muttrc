@@ -1,0 +1,231 @@
+set from = 'glaziou@gmail.com'
+set realname = 'Philippe Glaziou'
+set imap_user = 'glaziou@gmail.com'
+set imap_pass = 'ggLip0112'
+
+# REMOTE GMAIL FOLDERS
+set folder = 'imaps://imap.gmail.com:993'
+set spoolfile = '+INBOX'
+set postponed = '+[Google Mail]/Drafts'
+#set trash = '+[Google Mail]/Trash'
+#set any_label = '+[Google Mail]/any_label'
+
+# LOCAL FOLDERS FOR CACHED HEADERS AND CERTIFICATES
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+
+# SMTP SETTINGS
+set smtp_url = 'smtp://glaziou@smtp.gmail.com:587/'
+set smtp_pass = 'ggLip0112' # use the same password as for IMAP
+
+unset imap_passive
+set imap_check_subscribed
+bind index "^" imap-fetch-mail
+set mail_check = 10
+set timeout = 10
+
+# ALIASES
+set alias_file = ~/.mutt/aliases
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+# SECURING
+#set move = 'no'  # Stop asking to move read messages to mbox!
+set move = no
+set imap_keepalive = 900   
+set editor = 'vi'
+
+#bind editor noop
+macro index gi '=INBOX' 'Go to inbox'
+macro index ga '=[Google Mail]/All Mail' 'Go to all mail'
+macro index gs '=[Google Mail]/Sent Mail' 'Go to Sent Mail'
+macro index gd '=[Google Mail]/Drafts' 'Go to drafts'
+
+# Index View Options ---------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Index Key Bindings ---------------------------------
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Sidebar Navigation ---------------------------------
+#bind index,pager <down>   sidebar-next
+#bind index,pager <up>     sidebar-prev
+#bind index,pager <right>  sidebar-open
+#set sidebar_visible = no
+set pager_index_lines = 10
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# MS Word documents
+#application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
+
+# Images
+#image/jpg; ~/.mutt/view_attachment.sh %s jpg
+#image/jpeg; ~/.mutt/view_attachment.sh %s jpg
+#image/pjpeg; ~/.mutt/view_attachment.sh %s jpg
+#image/png; ~/.mutt/view_attachment.sh %s png
+#image/gif; ~/.mutt/view_attachment.sh %s gif
+
+# PDFs
+#application/pdf; ~/.mutt/view_attachment.sh %s pdf
+
+# HTML
+#text/html; ~/.mutt/view_attachment.sh %s html
+auto_view text/html
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+
+# Unidentified files
+#application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+
+# invoque muttqt
+set query_command="/usr/local/bin/muttqt -q '%s'"
+
+
+# Compose View Options -------------------------------
+set realname = "Philippe Glaziou"          # who am i?
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# colours
+#  color normal       color230      color234
+#  color message          color230      color234 
+#
+# --- slightly less yellow text colors ---
+# color normal      color253    color234 # mod
+color normal      color253    black # mod
+# color normal        color253    color233 # mod
+#  color normal       color253    default # mod
+color indicator       color230        color238
+color status          color101        color16
+#  color tree             color113        color234 
+#  color tree             color173        color234 
+color tree            color208        color234 
+color signature       color102        color234 
+color message         color253        color234 
+color attachment  color117        color234 
+color error           color30         color234 
+color tilde           color130        color235 
+#
+color search       color100     default 
+color markers      color138     default 
+#
+#  mono bold          reverse
+#  color bold         color173 color191
+#  mono underline     reverse
+#  color underline    color48  color191
+#
+color quoted        color107     color234             # quoted text
+color quoted1       color66      color234
+color quoted2       color32      color234
+color quoted3       color30      color234
+color quoted4       color99      color234
+color quoted5       color36      color234
+color quoted6       color114     color234
+color quoted7       color109     color234
+color quoted8       color41      color234
+color quoted9       color138     color234
+#
+# color body          cyan  default  "((ftp|http|https)://|news:)[^ >)\"\t]+"
+# color body          cyan  default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+color index       color202    color234  ~F         # Flagged
+color index           color39         color234  ~N          # New
+color index           color39         color234  ~O         
+color index           color229        color22  ~T         # Tagged
+color index           color240        color234  ~D         # Deleted
+#
+# ---
+#
+#mono body    reverse     '^(subject):.*'
+#color body   brightwhite magenta '^(subject):.*'
+#mono body    reverse     '[[:alpha:]][[:alnum:]-]+:'
+#color body   black cyan  '[[:alpha:]][[:alnum:]-]+:'
+#
+# --- header ---
+#
+color hdrdefault  color30     color233 
+color header      color132        color233    '^date:'
+color header      color153        color233    '^(to|cc|bcc):'
+color header      color120        color233    '^from:'
+color header      color178        color233    '^subject:'
+color header      color31         color233    '^user-agent:'
+color header      color29         color233    '^reply-to:'
+#
+#color header magenta default '^(status|lines|date|received|sender|references):'
+#color header magenta default '^(pr|mime|x-|user|return|content-)[^:]*:'
+#color header brightyellow default '^content-type:'
+#color header magenta default '^content-type: *text/plain'
+# color header    brightgreen default '^list-[^:]*:'
+#mono  header    bold             '^(subject):.*$'
+#color header brightcyan default  '^(disposition)'
+#color header green default   '^(mail-)?followup'
+#color header white default   '^reply'
+#color header brightwhite default '^(resent)'
+# color header    brightwhite default '^from:'
+#
+#mono index   bold '~h "^content-type: *(multipart/(mixed|signed|encrypted)|application/)"'
+#color index  green black '~h "^content-type: *multipart/(signed|encrypted)"'
+#
+#color sidebar_new color39 color234 
+
+

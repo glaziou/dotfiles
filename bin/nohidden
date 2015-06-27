@@ -1,0 +1,4 @@
+#!/bin/sh
+# show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles False; killall Finder
+

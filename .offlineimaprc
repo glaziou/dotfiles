@@ -1,0 +1,42 @@
+[general]
+ui = TTY.TTYUI
+accounts = glaziou
+pythonfile=~/.mutt/offlineimap.py
+fsync = False
+
+[Account glaziou]
+localrepository = glaziou-Local
+remoterepository = glaziou-Remote
+status_backend = sqlite
+
+[Repository glaziou]
+type = Maildir
+localfolders = ~/.mail/steve-stevelosh.com
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                              'sent':    '[Gmail]/Sent Mail',
+                           'flagged': '[Gmail]/Starred',
+                             'trash':   '[Gmail]/Trash',
+                           'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository glaziou]
+maxconnections = 1
+type = Gmail
+remoteuser = glaziou@gmail.com
+remotepasseval = get_keychain_pass(account="glaziou", server="imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                           }.get(folder, folder)
+
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+                                            ]
+
+
+
+
