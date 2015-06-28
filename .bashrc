@@ -90,9 +90,15 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lla='ls -la'
 alias gtb='cd ~/Dropbox/gtb2014'
+alias gtn='cd ~/Dropbox/gtb2015'
 alias gt='gnome-terminal'
 alias vi='/usr/bin/vim --servername VIM'
 alias vim='/usr/vin/vim --servername VIM'
+alias tme='cd ~/Dropbox/TME/2015'
+alias ev='cd ~/Dropbox/events/2015'
+alias doc='cd ~/Dropbox/doc'
+alias db='cd ~/Dropbox'
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
