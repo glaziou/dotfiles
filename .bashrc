@@ -98,7 +98,7 @@ alias tme='cd ~/Dropbox/TME/2015'
 alias ev='cd ~/Dropbox/events/2015'
 alias doc='cd ~/Dropbox/doc'
 alias db='cd ~/Dropbox'
-
+alias dev='cd ~/Dropbox/dev'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

@@ -11,7 +11,7 @@ call vundle#begin()
     " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'jalvesaq/R-Vim-runtime'
+Plugin 'jalvesaq/R-Vim-runtime'
 Plugin 'vim-scripts/Vim-R-plugin'
 
 " The following are examples of different formats supported.
@@ -31,7 +31,7 @@ Plugin 'vim-scripts/Vim-R-plugin'
 "Plugin 'user/L9', {'name': 'newL9'}
 Plugin 'scrooloose/nerdtree'
 Plugin 'csv.vim'
-Plugin 'ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'commentary.vim'
 Plugin 'abolish.vim'
 Plugin 'bufexplorer.zip'
@@ -222,4 +222,6 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'y', 'z' ]
       \ ]
+let g:bufferline_echo = 0
+set noshowmode
 
