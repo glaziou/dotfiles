@@ -44,7 +44,7 @@ if(interactive()){
  
 
 
-setwd('~/Dropbox/gtb2014')
+setwd('~/Dropbox/gtb2015')
 source('fun.R')
 
 theme_set(theme_bw())
