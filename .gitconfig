@@ -7,4 +7,5 @@
     ci = commit
 [core]
     editor = vim
+	excludefile = /Users/glaziou/.gitignore
 
