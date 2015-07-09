@@ -36,7 +36,7 @@ sh <- function(a.package){
 }
  
 auto.loads <-c("data.table", "devtools", "ggplot2", "dplyr", "readr",
-               "colorout", "setwidth")
+               "colorout", "setwidth", "vimcom")
  
 if(interactive()){
   invisible(sapply(auto.loads, sh))
