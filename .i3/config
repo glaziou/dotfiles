@@ -26,7 +26,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id gnome-sound-applet
 #exec xautolock -detectsleep -locker "gnome-screensaver-command --lock "
-exec xautolock -detectsleep -locker i3lock --color=000000
+exec xautolock -detectsleep -locker 'i3lock -c 000000'
 
 
 # assign apps to workspaces
@@ -160,7 +160,7 @@ bindsym Mod4+Mod1+r restart
 bindsym Mod4+Mod1+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
 # bindsym Mod4+Mod1+l exec "gnome-screensaver-command --lock "
-bindsym Mod4+Mod1+l exec i3lock --color=000000 
+bindsym Mod4+Mod1+l exec i3lock -color 000000 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

@@ -70,7 +70,6 @@ set backup
 set backupdir=~/.vimbackup
 set cursorline
 set expandtab
-set gdefault
 set hidden "can change buffers without saving
 set ignorecase "command insensitive by default
 set incsearch
