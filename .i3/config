@@ -29,6 +29,10 @@ exec --no-startup-id gnome-sound-applet
 exec xautolock -detectsleep -locker 'i3lock -c 000000'
 
 
+# screenshots
+bindsym Print exec xfce4-screenshooter
+
+
 # assign apps to workspaces
 assign [class="Thunderbird"] 3: mail
 assign [class="chrome"] 4: web
