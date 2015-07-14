@@ -189,7 +189,7 @@ colorscheme ir_black
 
 set backspace=indent,eol,start
 
-nnoremap Q <nop>
+"nnoremap Q <nop>
 
 " reload .vimrc automatically
 augroup reload_vimrc " {
